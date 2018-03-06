@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as L from "leaflet";
+import { MapService } from '../map.service';
+
 
 @Component({
   selector: 'app-map',
@@ -9,16 +11,21 @@ import * as L from "leaflet";
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+    constructor(private mapService: MapService) { }
 
-  ngOnInit() {
-      var mymap = L.map('mapid').setView([-6.9218093, 107.6071324], 18);
+    ngOnInit() {
+        const mymap = L.map('mapid', {
+            zoomControl: false,
+            center: L.latLng(-6.9218093, 107.6071324),
+            zoom: 13,
+            minZoom: 4,
+            maxZoom: 18,
+            layers: [this.mapService.baseMaps.OpenStreetMap]
+        });
 
-      //Set Map-Layer
-      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Peta wilayah Bandung &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
-    }).addTo(mymap);
-  }
+        L.control.zoom({ position: "topright" }).addTo(mymap);
+        L.control.scale().addTo(mymap);
+
+    }
 
 }

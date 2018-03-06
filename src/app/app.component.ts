@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-
-@import '../../node_modules/leaflet/dist/leaflet.css';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

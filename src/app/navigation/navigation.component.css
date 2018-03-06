@@ -1,0 +1,32 @@
+#navigation {
+    margin: 15px 0 0 15px;
+    position: absolute;
+    z-index: 1000;
+}
+
+#search {
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.matInput {
+    width: 300px;
+    color: #00cec9;
+    font-size: 20px;
+}
+#search button {
+    background-color: #00cec9;
+    color: #fff;
+}
+
+.container {
+    margin-top: 10px;
+    height: 300px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.sidenav {
+    padding: 20px;
+    width: 300px;
+}
