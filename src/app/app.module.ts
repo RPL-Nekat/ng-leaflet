@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { MapComponent } from './map/map.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { MapService } from './map.service';
+import { MapComponent } from './components/map/map.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { MapService } from './services/map.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
@@ -41,17 +42,22 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { LocationListComponent } from './components/location-list/location-list.component';
+import { LocationAddComponent } from './components/location-add/location-add.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    NavigationComponent
+    NavigationComponent,
+    LocationListComponent,
+    LocationAddComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,

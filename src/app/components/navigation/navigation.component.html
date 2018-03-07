@@ -1,0 +1,35 @@
+<div id="navigation">
+    <div id="search" class="box-frame on-menu">
+        <form>
+            <mat-form-field class="matInput">
+                <input matInput placeholder="Search">
+            </mat-form-field>
+            <button mat-raised-button>
+                <mat-icon aria-label="search">search</mat-icon>
+            </button>
+            <button type="button" mat-raised-button (click)="list.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <button type="button" mat-raised-button (click)="add.toggle()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <!-- <mat-button-toggle>
+                <mat-icon aria-label="toggle marker">add box</mat-icon>
+            </mat-button-toggle> -->
+        </form>
+    </div>
+
+    <!-- list -->
+    <mat-drawer-container class="container" autosize>
+        <mat-drawer #list class="sidenav on-menu box-frame" mode="side">
+            <app-location-list></app-location-list>
+        </mat-drawer>
+    </mat-drawer-container>
+
+    <!-- add -->
+    <mat-drawer-container class="container">
+        <mat-drawer #add class="sidenav on-menu box-frame" mode="side">
+            <app-location-add></app-location-add>
+        </mat-drawer>
+    </mat-drawer-container>
+</div>

@@ -1,0 +1,18 @@
+<form>
+    <mat-form-field>
+        <input matInput placeholder="Latitude" name="latitude">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Longitude" name="longitude">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Location Name" name="name" [(ngModel)]="locationName" value="{{ locationName }}">
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="5"
+        matAutosizeMaxRows="5" name="desc" [(ngModel)]="locationDesc">{{ locationDesc }}</textarea>
+    </mat-form-field>
+    <button type="submit" (click)="addLocation()" mat-raised-button class="green">
+        <mat-icon aria-label="save">save</mat-icon> Save Info
+    </button>
+</form>
