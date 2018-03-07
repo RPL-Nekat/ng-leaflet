@@ -22,23 +22,45 @@ export class MapService {
             })
         };
 
-        this.locations = [];
-        this.nextId = 1;
+        let locations = this.getLocations();
+
+        if (locations.length == 0) {
+            this.nextId = 0;
+        }
+        else {
+            let maxId = locations[locations.length-1].id;
+            this.nextId = maxId + 1;
+        }
     }
+
+    // save to local storage
 
     public addLocation(name: string, desc: string):void {
         let location = new Location(this.nextId, name, desc);
-        this.locations.push(location);
+        let locations = this.getLocations();
+        locations.push(location);
+
+        this.setLocalStorageLocations(locations);
         this.nextId++;
     }
 
     public getLocations(): Location[] {
-        return this.locations;
+        let localStorageItem = JSON.parse(localStorage.getItem('locations'));
+        return localStorageItem == null ? [] : localStorageItem.locations;
     }
 
     public removeLocation(id: number):void {
-        this.locations = this.locations.filter((location) => location.id != id);
+        let locations = this.getLocations();
+        locations = locations.filter((location) => location.id != id);
+
+        this.setLocalStorageLocations(locations);
     }
+
+    private setLocalStorageLocations(locations: Location[]): void {
+        localStorage.setItem('locations', JSON.stringify({ locations: locations}));
+    }
+
+    // disableMouseEvent
 
     disableMouseEvent(elementId: string) {
         const element = <HTMLElement>document.getElementById(elementId);
@@ -46,6 +68,8 @@ export class MapService {
         L.DomEvent.disableClickPropagation(element);
         L.DomEvent.disableScrollPropagation(element);
     }
+
+    // add marker
 
     toggleMarkerEditing(on: boolean) {
         if (on) {
