@@ -44,6 +44,7 @@ import {
 } from '@angular/material';
 import { LocationListComponent } from './components/location-list/location-list.component';
 import { LocationAddComponent } from './components/location-add/location-add.component';
+import { LocationItemComponent } from './components/location-item/location-item.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { LocationAddComponent } from './components/location-add/location-add.com
     MapComponent,
     NavigationComponent,
     LocationListComponent,
-    LocationAddComponent
+    LocationAddComponent,
+    LocationItemComponent
   ],
   imports: [
     BrowserModule,

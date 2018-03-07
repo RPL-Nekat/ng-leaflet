@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
@@ -10,15 +10,8 @@ import { MapService } from '../../services/map.service';
 })
 export class LocationListComponent implements OnInit {
 
-    @Input()
-    private location: Location;
-
     constructor(private mapService: MapService) { }
 
     ngOnInit() {
-    }
-
-    private removeLocation():void {
-        this.mapService.removeLocation(this.location.id);
     }
 }

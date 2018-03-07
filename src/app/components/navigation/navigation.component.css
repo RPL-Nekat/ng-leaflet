@@ -33,4 +33,5 @@
     padding: 20px;
     width: 320px;
     border-bottom: 6px solid #00cec9;
+    overflow-x: hidden;
 }
