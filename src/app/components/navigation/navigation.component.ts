@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MapService } from '../../services/map.service';
+
 @Component({
     selector: 'app-navigation',
     templateUrl: './navigation.component.html',
@@ -7,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-    constructor() { }
+    markersOn: boolean;
+
+    constructor(private mapService: MapService) {
+        this.markersOn = false;
+    }
 
     ngOnInit() {
+        this.mapService.disableMouseEvent('navigation');
+    }
 
+    toggleMarkers(on: boolean) {
+        this.markersOn = on;
+        this.mapService.toggleMarkerEditing(this.markersOn);
     }
 
 }

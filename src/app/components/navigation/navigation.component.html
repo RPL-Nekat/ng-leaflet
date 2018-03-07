@@ -10,12 +10,15 @@
             <button type="button" mat-raised-button (click)="list.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
-            <button type="button" mat-raised-button (click)="add.toggle()">
+            <button
+                    mat-raised-button
+                    disableRipple
+                    [class.inactive]="!markersOn"
+                    [class.active]="markersOn"
+                    matTooltip="toggle on/off marker editing"
+                    (click)="add.toggle(); toggleMarkers(!markersOn)">
                 <mat-icon>add</mat-icon>
             </button>
-            <!-- <mat-button-toggle>
-                <mat-icon aria-label="toggle marker">add box</mat-icon>
-            </mat-button-toggle> -->
         </form>
     </div>
 

@@ -39,4 +39,43 @@ export class MapService {
     public removeLocation(id: number):void {
         this.locations = this.locations.filter((location) => location.id != id);
     }
+
+    disableMouseEvent(elementId: string) {
+        const element = <HTMLElement>document.getElementById(elementId);
+
+        L.DomEvent.disableClickPropagation(element);
+        L.DomEvent.disableScrollPropagation(element);
+    }
+
+    toggleMarkerEditing(on: boolean) {
+        if (on) {
+            this.map.on('click', this.addMarker.bind(this));
+        }
+        else {
+            this.map.off('click');
+        }
+    }
+
+    private addMarker(e: L.leafletMouseEvent) {
+        const shortLat = Math.round(e.latlng.lat * 1000000) / 1000000;
+        const shortLng = Math.round(e.latlng.lng * 1000000) / 1000000;
+        const popup = `<div>Latitude: ${shortLat}</div><div>Longitude: ${shortLng}</div>`;
+        const icon = L.icon({
+            iconUrl: 'assets/marker/marker-icon.png',
+            shadowUrl: 'assets/marker/marker-shadow.png'
+        });
+
+        const marker = L.marker(e.latlng, {
+            draggabble: false,
+            icon
+        })
+        .bindPopup(popup, {
+            offset: L.point(12, 6)
+        })
+        .addTo(this.map)
+        .openPopup();
+
+        marker.on('click', () => marker.remove());
+    }
+
 }
