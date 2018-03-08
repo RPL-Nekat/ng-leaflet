@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import 'leaflet';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
@@ -45,7 +46,6 @@ import {
 import { LocationListComponent } from './components/location-list/location-list.component';
 import { LocationAddComponent } from './components/location-add/location-add.component';
 import { LocationItemComponent } from './components/location-item/location-item.component';
-
 
 @NgModule({
   declarations: [

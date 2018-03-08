@@ -12,7 +12,7 @@ export class LocationItemComponent implements OnInit {
 
     @Input('location') location: Location;
 
-    constructor(private mapService: MapService) { }
+    constructor(public mapService: MapService) { }
 
     ngOnInit() {
     }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import * as L from 'leaflet';
 import { Location } from '../models/location';
+import * as L from 'leaflet';
 
 @Injectable()
 export class MapService {
@@ -70,5 +70,37 @@ export class MapService {
 
         L.DomEvent.disableClickPropagation(element);
         L.DomEvent.disableScrollPropagation(element);
+    }
+
+    // get marker
+
+    toggleMarkerAdd(clicked: boolean) {
+        if (clicked) {
+            console.log('mapp add toggle is on');
+            this.map.on('click', this.addMarker.bind(this));
+        }
+        else {
+            console.log('mapp add toggle is off');            
+            this.map.off('click');
+        }        
+    }
+    private addMarker(e: L.LeafletMouseEvent) {
+        const shortLat = Math.round(e.latlng.lat * 1000000) / 1000000;
+        const shortLng = Math.round(e.latlng.lng * 1000000) / 1000000;
+        const popup = `<div>Latitude: ${shortLat}</div><div>Longitude: ${shortLng}</div>`;
+        const icon = L.icon({
+            iconUrl: 'assets/marker/marker-icon.png',
+            shadowUrl: 'assets/marker/marker-shadow.png'
+        });
+
+        const marker = L.marker(e.latlng, {
+            draggable: false,
+            icon
+        })
+        .bindPopup(popup, {
+            offset: L.point(12,6)
+        })
+        .addTo(this.map)
+        .openPopup();
     }
 }

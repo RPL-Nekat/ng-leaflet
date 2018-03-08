@@ -1,4 +1,4 @@
-export interface Location {
+export interface Location {	
     name: string;
     desc: string;
 }

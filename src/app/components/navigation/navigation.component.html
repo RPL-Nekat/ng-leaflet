@@ -10,10 +10,9 @@
             <button type="button" mat-raised-button (click)="list.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
-            <button type="button"
-                    mat-raised-button
-                    disableRipple
-                    (click)="add.toggle()">
+            <button mat-raised-button 
+                    matTooltip="Toggle add Markers"
+                    (click)="add.toggle(); toggleMarkers(!markersOn)">
                 <mat-icon>add</mat-icon>
             </button>
         </form>

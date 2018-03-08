@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
@@ -10,16 +10,25 @@ import { MapService } from '../../services/map.service';
 })
 export class NavigationComponent implements OnInit {
 
-	locations: Location[]
+	locations: Location[];
 
-    constructor(private mapService: MapService) { }
+    @Input() markersOn: boolean;
+
+    constructor(public mapService: MapService) { 
+        this.markersOn = false;
+    }
 
     ngOnInit() {
         this.mapService.disableMouseEvent('navigation');
-        this.locations = this.mapService.getLocation();
+        this.locations = this.mapService.getLocation();        
     }
 
     addLocation(location: Location) {
     	this.mapService.addLocation(location);
+    }
+
+    toggleMarkers(clicked: boolean) {
+        this.markersOn = clicked;
+        this.mapService.toggleMarkerAdd(this.markersOn);
     }
 }

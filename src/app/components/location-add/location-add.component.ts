@@ -13,8 +13,7 @@ export class LocationAddComponent implements OnInit {
 
     name: string;
     desc: string;
-    @Output() 
-    locationAdded = new EventEmitter<Location>();
+    @Output() locationAdded = new EventEmitter<Location>();
 
     constructor(
         public snackBar: MatSnackBar,
