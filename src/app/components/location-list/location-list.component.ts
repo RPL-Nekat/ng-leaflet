@@ -10,8 +10,11 @@ import { MapService } from '../../services/map.service';
 })
 export class LocationListComponent implements OnInit {
 
+	locations: Location[];
+
     constructor(private mapService: MapService) { }
 
     ngOnInit() {
+    	this.locations = this.mapService.getLocation();
     }
 }

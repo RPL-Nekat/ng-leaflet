@@ -10,15 +10,17 @@ import { MapService } from '../../services/map.service';
 })
 export class LocationItemComponent implements OnInit {
 
-    @Input()
-    private location: Location;
+    @Input('location') location: Location;
 
     constructor(private mapService: MapService) { }
 
     ngOnInit() {
     }
-    private removeLocation():void {
-        this.mapService.removeLocation(this.location.id);
+    private removeLocation(location: Location) {
+        const response = confirm('Remove this place?');
+        if (response) {
+            this.mapService.removeLocation(location);
+        }
     }
 
 }

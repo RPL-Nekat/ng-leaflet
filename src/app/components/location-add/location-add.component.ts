@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material';
+import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
 
 @Component({
@@ -10,30 +11,32 @@ import { MapService } from '../../services/map.service';
 })
 export class LocationAddComponent implements OnInit {
 
-    public locationName: string;
-    public locationDesc: string;
+    name: string;
+    desc: string;
+    @Output() 
+    locationAdded = new EventEmitter<Location>();
 
     constructor(
         public snackBar: MatSnackBar,
         private mapService: MapService
-    ) {
-        this.locationName = '';
-        this.locationDesc = '';
-    }
+    ) { }
 
     ngOnInit() {
+    }
+
+    addLocation() {
+        this.locationAdded.emit({
+            name: this.name,
+            desc: this.desc
+        });
+        this.name = '';
+        this.desc = '';
     }
 
     openSnackBar() {
     this.snackBar.open('Location info was saved', 'close', {
       duration: 2000,
-    });
-
-    private addLocation(): void {
-        this.mapService.addLocation(this.locationName, this.locationDesc);
-        this.locationName = '';
-        this.locationDesc = '';
-    }
+    });    
   }
 
 }

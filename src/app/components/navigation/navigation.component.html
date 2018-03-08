@@ -13,10 +13,7 @@
             <button type="button"
                     mat-raised-button
                     disableRipple
-                    [class.inactive]="!markersOn"
-                    [class.active]="markersOn"
-                    matTooltip="toggle on/off marker editing"
-                    (click)="add.toggle(); toggleMarkers(!markersOn)">
+                    (click)="add.toggle()">
                 <mat-icon>add</mat-icon>
             </button>
         </form>
@@ -32,7 +29,7 @@
     <!-- add -->
     <mat-drawer-container class="container">
         <mat-drawer #add class="sidenav on-menu box-frame" mode="side">
-            <app-location-add></app-location-add>
+            <app-location-add (locationAdded)="addLocation($event)"></app-location-add>
         </mat-drawer>
     </mat-drawer-container>
 </div>

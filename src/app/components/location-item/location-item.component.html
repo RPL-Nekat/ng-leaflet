@@ -1,3 +1,12 @@
-<button mat-icon-button color="warn" (click)="removeLocation()">
-    <mat-icon aria-label="delete location">remove_circle</mat-icon>
-</button>
+<mat-list-item>
+	<mat-icon mat-list-icon>place</mat-icon>
+	<h4 mat-line>{{ location.name }}</h4>
+	<p mat-line> {{ location.desc }} </p>
+	<button mat-icon-button 
+			color="warn" 
+			(click)="removeLocation(location)" 
+			style="float: right;">
+		<mat-icon aria-label="delete location">remove_circle</mat-icon>
+	</button>
+</mat-list-item>
+<mat-divider></mat-divider>
