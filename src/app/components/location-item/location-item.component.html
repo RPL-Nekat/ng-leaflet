@@ -1,7 +1,9 @@
 <mat-list-item>
 	<mat-icon mat-list-icon>place</mat-icon>
 	<h4 mat-line>{{ location.name }}</h4>
-	<p mat-line> {{ location.desc }} </p>
+	<p mat-line> 
+		{{ location.desc }} | {{ location.latlng }}
+	</p>
 	<button mat-icon-button 
 			color="warn" 
 			(click)="removeLocation(location)" 

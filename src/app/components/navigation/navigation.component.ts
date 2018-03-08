@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import {MatSnackBar} from '@angular/material';
 import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
 
@@ -14,7 +15,10 @@ export class NavigationComponent implements OnInit {
 
     @Input() markersOn: boolean;
 
-    constructor(public mapService: MapService) { 
+    constructor(
+        public snackBar: MatSnackBar,
+        public mapService: MapService
+        ) { 
         this.markersOn = false;
     }
 

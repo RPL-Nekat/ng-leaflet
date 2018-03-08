@@ -15,7 +15,7 @@
     color: #00cec9;
     font-size: 20px;
 }
-#search button, button.green {
+#search button.green {
     background-color: #00cec9;
     color: #fff;
 }
@@ -34,4 +34,9 @@
     width: 320px;
     border-bottom: 6px solid #00cec9;
     overflow-x: hidden;
+}
+
+.active {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
 }

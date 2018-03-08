@@ -7,13 +7,14 @@ import * as L from 'leaflet';
 export class MapService {
     public map: L.Map;
     public baseMaps: any;
+    public latitude: string;  
+    public longitude: string;
 
-    locations: Location[];
-    private nextId: number;
+    locations: Location[];    
 
     constructor() {
 
-        this.locations = []
+        this.locations = [];
 
         const osmAttr =
             'Peta wilayah Bandung &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
@@ -102,5 +103,8 @@ export class MapService {
         })
         .addTo(this.map)
         .openPopup();
+
+                
+        return this.latitude = shortLat.toString(), this.longitude = shortLng.toString();
     }
 }
