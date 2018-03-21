@@ -26,4 +26,7 @@ export class FormAddComponent implements OnInit {
     this.locationDesc= '';
     alert("success to add!");
   }
+  refresh(): void {
+    window.location.reload();
+}
 }
