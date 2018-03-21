@@ -9,8 +9,18 @@ import { Location } from '../model/location';
 })
 export class ListItemComponent implements OnInit {
 
+  @Input()
+  private location: Location;
+
   constructor(public mapService: MapService) { }
 
   ngOnInit() {
+  }
+
+  private removeLocation(id: number):void{
+    this.mapService.removeLocation(this.location.id);
+  }
+  refresh(): void {
+    window.location.reload();
   }
 }
