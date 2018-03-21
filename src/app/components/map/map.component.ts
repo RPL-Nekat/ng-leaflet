@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import * as L from 'leaflet';
 import { MapService } from '../../services/map.service';
+import { Location } from '../../models/location';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { MapService } from '../../services/map.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit {       
+
+    locations: Location[];
 
     constructor(private mapService: MapService) { }
 
@@ -24,9 +27,35 @@ export class MapComponent implements OnInit {
         });
 
         L.control.zoom({ position: "topright" }).addTo(map);
-        L.control.scale().addTo(map);
+        L.control.scale().addTo(map);               
 
-        this.mapService.map = map;
-    }
+        const icon = L.icon({
+                iconUrl: 'assets/marker/marker-icon.png',
+                shadowUrl: 'assets/marker/marker-shadow.png'
+            });
 
+
+        // load markers
+
+        let coord = localStorage.getItem('locations');
+
+        let coords = JSON.parse(coord);
+
+        coords.forEach(lokasi => {
+
+            const popup = `<div>${lokasi.name}</div><div>Latitude: ${lokasi.latlng[0]}</div><div>Longitude: ${lokasi.latlng[1]}</div>`;
+            console.log(lokasi.latlng);
+            const marker = L.marker(lokasi.latlng, {
+                draggable: true,
+                icon
+            })
+            .bindPopup(popup, {
+                offset: L.point(12,6)
+            })
+            .addTo(map)
+            .openPopup();
+        });
+            
+        this.mapService.map = map;           
+    }       
 }

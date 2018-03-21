@@ -1,5 +1,7 @@
-export class Location {	
+import { LatLng } from "leaflet";
+
+export interface Location {	
     name: string;
     desc: string;
-    latlng: string;
+    latlng: [LatLng.lat, LatLng.lng];
 }

@@ -13,12 +13,14 @@ export class NavigationComponent implements OnInit {
 
 	locations: Location[];
 
-    @Input() markersOn: boolean;
+    @Input() search: string;
+    markersOn: boolean;
 
     constructor(
         public snackBar: MatSnackBar,
         public mapService: MapService
         ) { 
+        this.search = '';
         this.markersOn = false;
     }
 
@@ -26,6 +28,14 @@ export class NavigationComponent implements OnInit {
         this.mapService.disableMouseEvent('navigation');
         this.locations = this.mapService.getLocation();        
     }
+
+    // cari(address: string) {
+    //     if (!address) {
+    //         return;
+    //     }
+
+    //     this.mapService.
+    // }
 
     addLocation(location: Location) {
     	this.mapService.addLocation(location);
@@ -35,4 +45,6 @@ export class NavigationComponent implements OnInit {
         this.markersOn = clicked;
         this.mapService.toggleMarkerAdd(this.markersOn);
     }
+
+
 }

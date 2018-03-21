@@ -4,10 +4,18 @@
             <mat-form-field class="matInput">
                 <input matInput placeholder="Search">
             </mat-form-field>
-            <button class="green" mat-raised-button>
+            <button class="green" 
+                    mat-raised-button
+                    disableRipple
+                    matTooltip="Search location">
                 <mat-icon aria-label="search">search</mat-icon>
             </button>
-            <button class="green" type="button" mat-raised-button (click)="list.toggle()">
+            <button class="green" 
+                    type="button" 
+                    mat-raised-button 
+                    disableRipple
+                    matTooltip="Toggle list location"
+                    (click)="list.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
             <button mat-raised-button 
@@ -16,7 +24,7 @@
                     [class.active]="markersOn"
                     matTooltip="Toggle add Markers"
                     (click)="add.toggle(); toggleMarkers(!markersOn)">
-                <mat-icon>add</mat-icon>
+                <mat-icon>pin_drop</mat-icon>
             </button>
         </form>
     </div>

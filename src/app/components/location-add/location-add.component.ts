@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material';
 import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
 
+import * as L from 'leaflet';
+
 @Component({
     selector: 'app-location-add',
     templateUrl: './location-add.component.html',
@@ -13,11 +15,11 @@ export class LocationAddComponent implements OnInit {
 
     name: string;
     desc: string;    
-    latlng: string; 
+    latlng: L.latlng; 
 
     @Input()
     lat: string = `${this.mapService.latitude}`;
-    lng: string = `${this.mapService.longitude}`;    
+    lng: string = `${this.mapService.longitude}`;
 
     @Output() locationAdded = new EventEmitter<Location>();
 
@@ -30,11 +32,10 @@ export class LocationAddComponent implements OnInit {
     }
 
     addLocation() {
-        const coor = this.mapService.latitude + ', ' + this.mapService.longitude;
         this.locationAdded.emit({
             name: this.name,
             desc: this.desc,
-            latlng: coor
+            latlng: [this.mapService.latitude, this.mapService.longitude]
         });
         this.name = '';
         this.desc = '';

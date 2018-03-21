@@ -16,6 +16,7 @@ export class LocationItemComponent implements OnInit {
 
     ngOnInit() {
     }
+    
     private removeLocation(location: Location) {
         const response = confirm('Remove this place?');
         if (response) {
