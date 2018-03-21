@@ -45,16 +45,12 @@ export class MapService {
     return localStorageItem == null ? [] : localStorageItem.locations;
   }
 
+  public removeLocation(id: number):void{
+    let locations = this.getLocations();
+    locations = locations.filter((location)=> location.id != id);
+    this.setLocalStorage(locations);
+  }
   private setLocalStorage(locations: Location[]):void{
     localStorage.setItem('locations', JSON.stringify({locations:locations}));
-  }
-
-  public removeLocation(location: Location):void{
-    for (let i = 0; this.locations.length; i++){
-      if(location == this.locations[i]){
-        this.locations.splice(i, 1);
-        localStorage.setItem('locations', JSON.stringify(this.locations));
-      }
-    }
   }
 }
