@@ -18,8 +18,8 @@ export class LocationAddComponent implements OnInit {
     latlng: L.latlng; 
 
     @Input()
-    lat: string = `${this.mapService.latitude}`;
-    lng: string = `${this.mapService.longitude}`;
+    lat: string = this.mapService.latitude;
+    lng: string = this.mapService.longitude;
 
     @Output() locationAdded = new EventEmitter<Location>();
 

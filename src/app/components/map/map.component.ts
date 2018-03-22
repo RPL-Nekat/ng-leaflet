@@ -43,7 +43,7 @@ export class MapComponent implements OnInit {
 
         coords.forEach(lokasi => {
 
-            const popup = `<div>${lokasi.name}</div><div>Latitude: ${lokasi.latlng[0]}</div><div>Longitude: ${lokasi.latlng[1]}</div>`;
+            const popup = `<h3><b>${lokasi.name}</b></h3><div>Latitude: ${lokasi.latlng[0]}</div><div>Longitude: ${lokasi.latlng[1]}</div>`;
             console.log(lokasi.latlng);
             const marker = L.marker(lokasi.latlng, {
                 draggable: true,

@@ -58,12 +58,12 @@ export class MapService {
     }    
 
     public removeLocation(location: Location):void {
-        for (let i = 0; this.locations.length; i++) {
-            if (location == this.locations[i]) {
-                this.locations.splice(i, 1);
-                localStorage.setItem('locations', JSON.stringify(this.locations));
-            }
-        }   
+
+        let idxLoc = this.locations.findIndex(item => item == location);
+        if (~idxLoc) {
+            this.locations.splice(idxLoc,1);
+            localStorage.locations = JSON.stringify(this.locations);
+        }
     }
 
     // disableMouseEvent
