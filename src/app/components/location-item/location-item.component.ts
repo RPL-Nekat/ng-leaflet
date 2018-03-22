@@ -21,6 +21,8 @@ export class LocationItemComponent implements OnInit {
         const response = confirm('Remove this place?');
         if (response) {
             this.mapService.removeLocation(location);
+            let mark = this.mapService.markers();
+            mark.on('change', () => mark.remove());
         }
     }
 

@@ -31,7 +31,9 @@ export class MapComponent implements OnInit {
 
         const icon = L.icon({
                 iconUrl: 'assets/marker/marker-icon.png',
-                shadowUrl: 'assets/marker/marker-shadow.png'
+                shadowUrl: 'assets/marker/marker-shadow.png',
+                iconAnchor: [15, 50],
+                popupAnchor: [-15, -40],
             });
 
 
@@ -41,20 +43,23 @@ export class MapComponent implements OnInit {
 
         let coords = JSON.parse(coord);
 
-        coords.forEach(lokasi => {
+        if (coords == null) return;
+        else {
+            coords.forEach(lokasi => {
 
-            const popup = `<h3><b>${lokasi.name}</b></h3><div>Latitude: ${lokasi.latlng[0]}</div><div>Longitude: ${lokasi.latlng[1]}</div>`;
-            console.log(lokasi.latlng);
-            const marker = L.marker(lokasi.latlng, {
-                draggable: true,
-                icon
-            })
-            .bindPopup(popup, {
-                offset: L.point(12,6)
-            })
-            .addTo(map)
-            .openPopup();
-        });
+                const popup = `<h3><b>${lokasi.name}</b></h3><div>Latitude: ${lokasi.latlng[0]}</div><div>Longitude: ${lokasi.latlng[1]}</div>`;
+                console.log(lokasi.latlng);
+                const marker = L.marker(lokasi.latlng, {
+                    draggable: true,
+                    icon
+                })
+                .bindPopup(popup, {
+                    offset: L.point(12,6)
+                })
+                .addTo(map)
+                .openPopup();
+            });
+        }     
             
         this.mapService.map = map;           
     }       

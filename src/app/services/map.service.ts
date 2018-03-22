@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+
 import { Location } from '../models/location';
 import * as L from 'leaflet';
-import { LatLng } from 'leaflet';
 
 
 @Injectable()
 export class MapService {
     public map: L.Map;
     public baseMaps: any;
-    public latitude: LatLng;  
-    public longitude: LatLng;
+    public latitude: L.LatLng;  
+    public longitude: L.LatLng;
+    public markers: any;
 
     locations: Location[];    
 
@@ -93,7 +96,9 @@ export class MapService {
         const popup = `<div>Latitude: ${shortLat}</div><div>Longitude: ${shortLng}</div>`;
         const icon = L.icon({
             iconUrl: 'assets/marker/marker-icon.png',
-            shadowUrl: 'assets/marker/marker-shadow.png'
+            shadowUrl: 'assets/marker/marker-shadow.png',
+            iconAnchor: [15, 50],
+            popupAnchor: [-15, -40],
         });
 
         const marker = L.marker(e.latlng, {
@@ -104,30 +109,11 @@ export class MapService {
             offset: L.point(12,6)
         })
         .addTo(this.map)
-        .openPopup();        
-                
-        return this.latitude = shortLat, this.longitude = shortLng;        
-    }
+        .openPopup();  
 
-    private editMarker(e: L.LeafletMouseEvent) {
-        const shortLat = Math.round(e.latlng.lat * 1000000) / 1000000;
-        const shortLng = Math.round(e.latlng.lng * 1000000) / 1000000;
-        const popup = `<div>Latitude: ${shortLat}</div><div>Longitude: ${shortLng}</div>`;
-        const icon = L.icon({
-            iconUrl: 'assets/marker/marker-icon.png',
-            shadowUrl: 'assets/marker/marker-shadow.png'
-        });
+        marker.on('click', () => marker.remove());
 
-        const marker = L.marker(e.latlng, {
-            draggable: true,
-            icon
-        })
-        .bindPopup(popup, {
-            offset: L.point(12,6)
-        })
-        .addTo(this.map)
-        .openPopup();        
-                
-        return this.latitude = shortLat + shortLng;
+        return this.latitude = shortLat, this.longitude = shortLng, this.markers = marker;
+
     }
 }
