@@ -1,9 +1,9 @@
 <form (submit)="addLocation()">
     <mat-form-field>
-        <input matInput placeholder="Latitude" name="lat" [(ngModel)]="lat">
+        <input matInput placeholder="Latitude" name="lat" [(ngModel)]="lat" [value]="this.mapService.latitude">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Longitude" name="lng" [(ngModel)]="lng">
+        <input matInput placeholder="Longitude" name="lng" [(ngModel)]="lng" [value]="this.mapService.longitude">
     </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="Location Name" name="name" [(ngModel)]="name">

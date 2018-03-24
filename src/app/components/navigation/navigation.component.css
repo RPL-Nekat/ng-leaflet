@@ -5,6 +5,7 @@
 }
 
 #search {
+    height: 100px;    
     padding: 5px 20px 5px 20px;
     background-color: rgba(255, 255, 255, 0.9);
     border-left: 6px solid #00cec9;
@@ -12,9 +13,14 @@
 
 .matInput {
     width: 300px;
-    color: #00cec9;
     font-size: 20px;
+    margin-top: 5px;
 }
+
+#search button {
+    margin-right: 10px;
+}
+
 #search button.green {
     background-color: #00cec9;
     color: #fff;
@@ -22,7 +28,7 @@
 
 .container {
     position: absolute;
-    top: 100px;
+    top: 120px;
     height: 400px;
     z-index: 1000;
     background-color: rgba(255, 255, 255, 0);
@@ -40,4 +46,18 @@
 .active {
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
+}
+
+
+@media (max-width: 768px) {
+    #navigation, #search {
+        min-width: 80%;
+        max-width: 98%;
+    }   
+}
+
+@media (max-width: 320px) {
+    #navigation, #search {
+        width: 100%;
+    }   
 }

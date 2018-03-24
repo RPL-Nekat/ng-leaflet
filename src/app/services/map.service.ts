@@ -21,7 +21,7 @@ export class MapService {
         this.locations = [];
 
         const osmAttr =
-            'Simple Map &copy; AkhdanFirdaus & AliefYasin | <a href="http://openstreetmap.org">OpenStreetMap</a>'
+            'Simple Map &copy; AMF & MAY | <a href="http://openstreetmap.org">OpenStreetMap</a>'
 
         this.baseMaps = {
             OpenStreetMap: L.tileLayer(
@@ -101,7 +101,7 @@ export class MapService {
         });
 
         const marker = L.marker(e.latlng, {
-            draggable: false,
+            draggable: true,
             icon
         })
         .bindPopup(popup, {

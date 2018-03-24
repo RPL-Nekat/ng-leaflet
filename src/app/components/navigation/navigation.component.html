@@ -1,5 +1,5 @@
 <div id="navigation">
-    <div id="search" class="box-frame on-menu">
+    <mat-toolbar id="search" class="box-frame on-menu">
         <form>
             <mat-form-field class="matInput">
                 <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto">
@@ -15,24 +15,23 @@
                     matTooltip="Search location">
                 <mat-icon aria-label="search">search</mat-icon>
             </button>
-            <button class="green" 
-                    type="button" 
-                    mat-raised-button 
-                    disableRipple
-                    matTooltip="Toggle list location"
-                    (click)="list.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <button mat-raised-button 
-                    disableRipple
-                    [class.green]="!markersOn"
-                    [class.active]="markersOn"
-                    matTooltip="Toggle add Markers"
-                    (click)="add.toggle(); toggleMarkers(!markersOn)">
-                <mat-icon>add_location</mat-icon>
-            </button>
         </form>
-    </div>
+        <button mat-raised-button 
+                disableRipple
+                matTooltip="Toggle list location"
+                class="green"                             
+                (click)="list.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-raised-button 
+                disableRipple
+                matTooltip="Toggle add Markers"
+                [class.green]="!markersOn"
+                [class.active]="markersOn"                
+                (click)="add.toggle(); toggleMarkers(!markersOn)">
+            <mat-icon>add_location</mat-icon>
+        </button>        
+    </mat-toolbar>
 
     <!-- list -->
     <mat-drawer-container class="container" autosize>

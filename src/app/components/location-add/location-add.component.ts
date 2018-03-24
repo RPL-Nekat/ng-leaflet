@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material';
 import { Location } from '../../models/location';
@@ -16,10 +16,6 @@ export class LocationAddComponent implements OnInit {
     name: string;
     desc: string;    
     latlng: L.latlng; 
-
-    @Input()
-    lat: string = this.mapService.latitude;
-    lng: string = this.mapService.longitude;
 
     @Output() locationAdded = new EventEmitter<Location>();
 

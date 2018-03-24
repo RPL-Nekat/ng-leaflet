@@ -52,9 +52,6 @@ export class NavigationComponent implements OnInit {
         });
 
         return this.options = places;
-        
-
-        // return this.options = place;
     }
 
     filter(val: string): string[] {

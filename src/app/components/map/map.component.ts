@@ -50,7 +50,7 @@ export class MapComponent implements OnInit {
                 const popup = `<h3><b>${lokasi.name}</b></h3><div>Latitude: ${lokasi.latlng[0]}</div><div>Longitude: ${lokasi.latlng[1]}</div>`;
                 console.log(lokasi.latlng);
                 const marker = L.marker(lokasi.latlng, {
-                    draggable: true,
+                    draggable: false,
                     icon
                 })
                 .bindPopup(popup, {
