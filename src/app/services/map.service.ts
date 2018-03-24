@@ -13,7 +13,6 @@ export class MapService {
     public baseMaps: any;
     public latitude: L.LatLng;  
     public longitude: L.LatLng;
-    public markers: any;
 
     locations: Location[];    
 
@@ -22,7 +21,7 @@ export class MapService {
         this.locations = [];
 
         const osmAttr =
-            'Peta wilayah Bandung &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>'
+            'Simple Map &copy; AkhdanFirdaus & AliefYasin | <a href="http://openstreetmap.org">OpenStreetMap</a>'
 
         this.baseMaps = {
             OpenStreetMap: L.tileLayer(
@@ -113,7 +112,6 @@ export class MapService {
 
         marker.on('click', () => marker.remove());
 
-        return this.latitude = shortLat, this.longitude = shortLng, this.markers = marker;
-
+        return this.latitude = shortLat, this.longitude = shortLng;
     }
 }

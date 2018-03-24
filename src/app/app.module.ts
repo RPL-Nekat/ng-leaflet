@@ -8,7 +8,7 @@ import { MapComponent } from './components/map/map.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MapService } from './services/map.service';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -43,9 +43,12 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 import { LocationListComponent } from './components/location-list/location-list.component';
 import { LocationAddComponent } from './components/location-add/location-add.component';
 import { LocationItemComponent } from './components/location-item/location-item.component';
+import { LocationDetailComponent } from './components/location-detail/location-detail.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,8 @@ import { LocationItemComponent } from './components/location-item/location-item.
     NavigationComponent,
     LocationListComponent,
     LocationAddComponent,
-    LocationItemComponent
+    LocationItemComponent,
+    LocationDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +96,8 @@ import { LocationItemComponent } from './components/location-item/location-item.
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [MapService],
   bootstrap: [AppComponent]

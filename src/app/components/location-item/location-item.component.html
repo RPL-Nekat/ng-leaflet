@@ -1,25 +1,25 @@
 <mat-list-item>
-	<h4 mat-line><a routerLink='/detail/{{location.name}}'>{{ location.name }}</a></h4>
-	<p mat-line> 
-		{{ location.desc }} <br> 
+	<h4 mat-line>{{ location.name }}</h4>
+	<p mat-line>
+		{{ location.desc }} <br>
 		<small>{{ location.latlng }}</small>
 	</p>
 	<div style="float: right;">
-		<button mat-icon-button 
-				color="primary" 
+		<button mat-icon-button
+				color="primary"
 				(click)="onSelect(location)"
 				disableRipple
 				matTooltip="edit this location">
 			<mat-icon aria-label="delete location">edit_location</mat-icon>
 		</button>
 		<br>
-		<button mat-icon-button 
-				color="warn" 
+		<button mat-icon-button
+				color="warn"
 				(click)="removeLocation(location)"
 				disableRipple
 				matTooltip="remove this location">
 			<mat-icon aria-label="delete location">location_off</mat-icon>
 		</button>
-	</div>	
+	</div>
 </mat-list-item>
 <mat-divider></mat-divider>
