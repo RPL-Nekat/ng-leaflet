@@ -1,15 +1,16 @@
 <div id="navigation">
     <mat-toolbar id="search" class="box-frame on-menu">
-        <form>
+        <form (submit)="cariLokasi()">
             <mat-form-field class="matInput">
-                <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto" [ngModel]="tempat">
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                         {{ option }}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-            <button class="green" 
+            <button type="submit" 
+                    class="green" 
                     mat-raised-button
                     disableRipple
                     matTooltip="Search location">

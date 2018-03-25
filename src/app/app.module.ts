@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './components/map/map.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MapService } from './services/map.service';
+import { GeocodeService } from './services/geocode.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -99,7 +100,7 @@ import { AppRoutingModule } from './/app-routing.module';
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [MapService],
+  providers: [MapService, GeocodeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

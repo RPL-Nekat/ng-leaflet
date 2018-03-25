@@ -11,8 +11,12 @@ import * as L from 'leaflet';
 export class MapService {
     public map: L.Map;
     public baseMaps: any;
-    public latitude: L.LatLng;  
-    public longitude: L.LatLng;
+    public name: string;
+    public desc: string;
+    public latitude: L.LatLng.lat;  
+    public longitude: L.LatLng.lng;
+    public viewBounds: L.LatLngBounds;
+    public markers: L.marker;
 
     locations: Location[];    
 
@@ -91,8 +95,7 @@ export class MapService {
     }
     private addMarker(e: L.LeafletMouseEvent) {
         const shortLat = Math.round(e.latlng.lat * 1000000) / 1000000;
-        const shortLng = Math.round(e.latlng.lng * 1000000) / 1000000;
-        const popup = `<div>Latitude: ${shortLat}</div><div>Longitude: ${shortLng}</div>`;
+        const shortLng = Math.round(e.latlng.lng * 1000000) / 1000000;        
         const icon = L.icon({
             iconUrl: 'assets/marker/marker-icon.png',
             shadowUrl: 'assets/marker/marker-shadow.png',
@@ -100,18 +103,43 @@ export class MapService {
             popupAnchor: [-15, -40],
         });
 
-        const marker = L.marker(e.latlng, {
+        let marker = this.markers;
+        marker = L.marker(e.latlng, {
             draggable: true,
             icon
         })
-        .bindPopup(popup, {
-            offset: L.point(12,6)
-        })
         .addTo(this.map)
-        .openPopup();  
+        .openPopup(); 
 
-        marker.on('click', () => marker.remove());
+        let viewBounds = L.latLngBounds(e.latlng, e.latlng);         
 
-        return this.latitude = shortLat, this.longitude = shortLng;
+        marker.on('drag', (event) => {            
+            let marker = event.target;
+            let location = marker.getLatLng();
+
+            let latest = location.lat;
+            let lonest = location.lng;
+
+            let viewBs = L.latLngBounds(e.latlng, e.latlng);         
+
+            const shortLat = Math.round(latest * 1000000) / 1000000;
+            const shortLng = Math.round(lonest * 1000000) / 1000000;
+
+            console.log(L.latLngBounds(e.latlng, e.latlng));
+
+            return this.latitude = shortLat, this.longitude = shortLng, this.viewBounds = viewBs;;            
+        });
+        marker.on('click', () => { 
+            marker.remove();
+            return this.latitude = '', this.longitude = '', this.viewBounds = '';
+        });                                        
+
+        this.markers = marker;
+        return this.latitude = shortLat, this.longitude = shortLng, this.viewBounds = viewBounds;
+    }
+
+    fitBounds(bounds: L.LatLngBounds) {
+        this.map.getCenter();
+        this.map.fitBounds(bounds, {maxZoom: 18});
     }
 }

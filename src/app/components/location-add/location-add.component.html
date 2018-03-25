@@ -6,13 +6,18 @@
         <input matInput placeholder="Longitude" name="lng" [(ngModel)]="lng" [value]="this.mapService.longitude">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Location Name" name="name" [(ngModel)]="name">
+        <input matInput placeholder="Location Name" name="name" [(ngModel)]="name" [value]="this.mapService.name">
     </mat-form-field>
     <mat-form-field>
         <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="5"
-        matAutosizeMaxRows="5" name="desc" [(ngModel)]="desc"></textarea>
+        matAutosizeMaxRows="5" name="desc" [(ngModel)]="desc" [value]="this.mapService.desc"></textarea>
     </mat-form-field>
-    <button type="submit" (click)="openSnackBar()" mat-raised-button class="green">
-        <mat-icon aria-label="save">save</mat-icon> Save Info
-    </button>
+    <div style="float: right;">
+        <button type="submit" (click)="openSnackBar()" mat-raised-button class="green" disableRipple matTooltip="save info">
+            <mat-icon aria-label="save">save</mat-icon>
+        </button>
+        <button type="reset" mat-raised-button class="green" disableRipple matTooltip="reset">
+            <mat-icon aria-label="save">clear_all</mat-icon>
+        </button>
+    </div>    
 </form>

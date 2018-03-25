@@ -13,13 +13,11 @@ export class GeocodeService {
 
 	constructor(private http: HttpClient) { }
 
-	geocode(search: string): Observable<Location[]> {
+	pencarian(search: string): Observable<Location[]> {
 		const encoded = encodeURIComponent(search);
 
 		return this.http
-			.get<Location[]>(
-				`https://nominatim.openstreetmap.org/search.php?q=${encoded}&format=jsonv2`);
-			}
+			.get<Location[]>(`https://nominatim.openstreetmap.org/search.php?q=${encoded}&format=jsonv2`);
 	}
 
 }

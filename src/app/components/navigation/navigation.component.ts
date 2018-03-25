@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
+// import { GeocodeService } from '../../services/geocode.service';
 
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -27,7 +28,8 @@ export class NavigationComponent implements OnInit {
 
     constructor(
         public snackBar: MatSnackBar,
-        public mapService: MapService
+        private mapService: MapService,
+        // private geocode: GeocodeService
         ) { 
         this.search = '';
         this.markersOn = false;        
@@ -58,13 +60,19 @@ export class NavigationComponent implements OnInit {
         return this.options.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);
     }
 
-    // cari(address: string) {
-    //     if (!address) {
-    //         return;
-    //     }
+    cariLokasi(tempat: string) {
+        if (!tempat) return;
 
-    //     this.mapService.
-    // }
+        let center = JSON.parse(localStorage.getItem('locations'));
+
+        center.filter( (x) => {
+            x == tempat;
+
+            console.log(x.latlng);
+        });
+
+        // this.mapService.viewBounds()
+    }
 
     addLocation(location: Location) {
     	this.mapService.addLocation(location);
