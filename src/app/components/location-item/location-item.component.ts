@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 
+import * as L from 'leaflet';
 import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
 import { MapComponent } from '../map/map.component';
@@ -19,6 +20,10 @@ export class LocationItemComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+    }
+
+    private markClick(location: L.LatLng) {
+        this.mapService.map.panTo(location);
     }
     
     private removeLocation(location: Location) {

@@ -3,12 +3,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Location } from '../../models/location';
 import { MapService } from '../../services/map.service';
-// import { GeocodeService } from '../../services/geocode.service';
+import { GeocodeService } from '../../services/geocode.service';
 
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'app-navigation',
@@ -26,10 +27,13 @@ export class NavigationComponent implements OnInit {
     options = [];
     filteredOptions: Observable<string[]>;
 
+    results: Object;
+    searchTerm$ = new Subject<string>();
+
     constructor(
         public snackBar: MatSnackBar,
         private mapService: MapService,
-        // private geocode: GeocodeService
+        private geocode: GeocodeService
         ) { 
         this.search = '';
         this.markersOn = false;        
@@ -60,18 +64,11 @@ export class NavigationComponent implements OnInit {
         return this.options.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);
     }
 
-    cariLokasi(tempat: string) {
-        if (!tempat) return;
-
-        let center = JSON.parse(localStorage.getItem('locations'));
-
-        center.filter( (x) => {
-            x == tempat;
-
-            console.log(x.latlng);
-        });
-
-        // this.mapService.viewBounds()
+    cariLokasi() {
+        this.geocode.search(this.searchTerm$)
+            .subscribe(results => {
+                this.results = results;
+            });        
     }
 
     addLocation(location: Location) {

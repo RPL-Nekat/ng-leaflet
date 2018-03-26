@@ -2,11 +2,14 @@
     <mat-toolbar id="search" class="box-frame on-menu">
         <form (submit)="cariLokasi()">
             <mat-form-field class="matInput">
-                <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto" [ngModel]="tempat">
+                <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto" [ngModel]="tempat" (keyup)="searchTerm$.next($event.target.value)">
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{ option }}
-                    </mat-option>
+                        <mat-option *ngFor="let result of results" [value]="result.display_name">
+                            {{ result.display_name }}
+                        </mat-option>
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{ option }}
+                        </mat-option>                    
                 </mat-autocomplete>
             </mat-form-field>
             <button type="submit" 
@@ -43,7 +46,7 @@
 
     <!-- add -->
     <mat-drawer-container class="container">
-        <mat-drawer #add class="sidenav on-menu box-frame" mode="side">
+        <mat-drawer #add class="sidenav on-menu box-frame side2" mode="side">
             <app-location-add (locationAdded)="addLocation($event)"></app-location-add>
         </mat-drawer>
     </mat-drawer-container>
