@@ -18,13 +18,6 @@ export class GeocodeService {
 
 	constructor(private http: HttpClient) { }
 
-	// pencarian(search: string): Observable<Location[]> {
-	// 	const encoded = encodeURIComponent(search);
-
-	// 	return this.http
-	// 		.get<Location[]>(`https://nominatim.openstreetmap.org/search.php?q=${encoded}&format=jsonv2`);
-	// }
-
 	baseUrl: string = 'https://nominatim.openstreetmap.org/search.php?q=';
 	jsonUrl: string = '&format=jsonv2';
 

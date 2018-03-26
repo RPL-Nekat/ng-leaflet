@@ -1,10 +1,10 @@
 <div id="navigation">
     <mat-toolbar id="search" class="box-frame on-menu">
-        <form (submit)="cariLokasi()">
+        <form (submit)="cariLokasi(result)">
             <mat-form-field class="matInput">
                 <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto" [ngModel]="tempat" (keyup)="searchTerm$.next($event.target.value)">
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                        <mat-option *ngFor="let result of results" [value]="result.display_name">
+                        <mat-option *ngFor="let result of results" [value]="result.display_name" (click)="onSelected(result)">
                             {{ result.display_name }}
                         </mat-option>
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">

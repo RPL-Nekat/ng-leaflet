@@ -65,10 +65,17 @@ export class NavigationComponent implements OnInit {
     }
 
     cariLokasi() {
+
         this.geocode.search(this.searchTerm$)
             .subscribe(results => {
                 this.results = results;
-            });        
+            });             
+    }
+
+    onSelected(result) {
+        console.log(result.display_name);
+
+        this.mapService.map.panTo([result.lat, result.lon]);
     }
 
     addLocation(location: Location) {
