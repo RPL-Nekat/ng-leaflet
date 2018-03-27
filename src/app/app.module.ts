@@ -49,8 +49,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LocationListComponent } from './components/location-list/location-list.component';
 import { LocationAddComponent } from './components/location-add/location-add.component';
 import { LocationItemComponent } from './components/location-item/location-item.component';
-import { LocationDetailComponent } from './components/location-detail/location-detail.component';
-import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -60,7 +58,6 @@ import { AppRoutingModule } from './/app-routing.module';
     LocationListComponent,
     LocationAddComponent,
     LocationItemComponent,
-    LocationDetailComponent
   ],
   imports: [
     HttpClientModule,
@@ -99,7 +96,6 @@ import { AppRoutingModule } from './/app-routing.module';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    AppRoutingModule,
     ReactiveFormsModule,
   ],
   providers: [MapService, GeocodeService],

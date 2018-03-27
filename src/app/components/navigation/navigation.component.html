@@ -1,25 +1,23 @@
 <div id="navigation">
     <mat-toolbar id="search" class="box-frame on-menu">
-        <form (submit)="cariLokasi(result)">
-            <mat-form-field class="matInput">
-                <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto" [ngModel]="tempat" (keyup)="searchTerm$.next($event.target.value)">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                        <mat-option *ngFor="let result of results" [value]="result.display_name" (click)="onSelected(result)">
-                            {{ result.display_name }}
-                        </mat-option>
-                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{ option }}
-                        </mat-option>                    
-                </mat-autocomplete>
-            </mat-form-field>
-            <button type="submit" 
+        <mat-form-field class="matInput" (keyup)="cariLokasi(result)">
+            <input type="text" placeholder="Search" aria-label="Location" matInput [formControl]="myControl" [matAutocomplete]="auto" [ngModel]="tempat" (keyup)="searchTerm$.next($event.target.value)">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let result of results" [value]="result.display_name" (click)="onSelected(result)">
+                        {{ result.display_name }}
+                    </mat-option>
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{ option }}
+                    </mat-option>                    
+            </mat-autocomplete>
+            <!--<button type="submit" 
                     class="green" 
                     mat-raised-button
                     disableRipple
                     matTooltip="Search location">
                 <mat-icon aria-label="search">search</mat-icon>
-            </button>
-        </form>
+            </button> -->
+        </mat-form-field>
         <button mat-raised-button 
                 disableRipple
                 matTooltip="Toggle list location"

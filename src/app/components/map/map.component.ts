@@ -61,13 +61,12 @@ export class MapComponent implements OnInit {
                 .bindPopup(popup, {
                     offset: L.point(12,6)
                 })
-                .addTo(this.map)
-                .openPopup();
+                .addTo(this.map);
 
                 marker.on('click', () => {
                     // let bounds = lokasi.viewBounds
                     // this.mapService.fitBounds(bounds);
-                    this.mapService.map.panTo(lokasi.latlng);
+                    // this.mapService.map.panTo(lokasi.latlng);
                     return this.mapService.name = lokasi.name, this.mapService.desc = lokasi.desc, this.mapService.latitude = lokasi.latlng[0], this.mapService.longitude = lokasi.latlng[1];
                 })                
             });

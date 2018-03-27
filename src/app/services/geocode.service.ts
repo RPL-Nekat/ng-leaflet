@@ -14,8 +14,6 @@ import { Location } from '../models/location';
 @Injectable()
 export class GeocodeService {
 
-	public hasilpencarian = [];
-
 	constructor(private http: HttpClient) { }
 
 	baseUrl: string = 'https://nominatim.openstreetmap.org/search.php?q=';
