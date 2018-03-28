@@ -13,6 +13,7 @@ import { Location } from '../../models/location';
 export class MapComponent implements OnInit {       
 
     public map: L.map;
+    public markers = [];
 
     public icon = L.icon({
                 iconUrl: 'assets/marker/marker-icon.png',
@@ -60,8 +61,11 @@ export class MapComponent implements OnInit {
                 })
                 .bindPopup(popup, {
                     offset: L.point(12,6)
-                })
-                .addTo(this.map);
+                });               
+                // .addTo(this.map);
+
+                this.map.addLayer(marker);
+                this.markers.push(marker);
 
                 marker.on('click', () => {
                     // let bounds = lokasi.viewBounds

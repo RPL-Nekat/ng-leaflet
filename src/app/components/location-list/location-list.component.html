@@ -1,7 +1,16 @@
 <mat-list>
-  <h3 mat-subheader><mat-icon mat-list-icon>place</mat-icon> Locations</h3>
-  <app-location-item 
-    *ngFor=" let location of locations"
-    [location]="location"
-  ></app-location-item>
+	<mat-grid-list cols="2" rowHeight="2:1">
+		<mat-grid-tile>
+			<mat-icon mat-list-icon>place</mat-icon> 
+			<h4>Locations</h4>
+		</mat-grid-tile>
+		<mat-grid-tile (click)="getFile()">
+			<mat-icon>save</mat-icon>
+			<h4>Save to text</h4>
+		</mat-grid-tile>
+	</mat-grid-list>	
+	<app-location-item 
+	*ngFor=" let location of locations"
+	[location]="location"
+	></app-location-item>
 </mat-list>

@@ -30,11 +30,12 @@ export class LocationItemComponent implements OnInit {
         const response = confirm('Remove this place?');
         if (response) {
             this.mapService.removeLocation(location);                                    
-            let mark = this.mapService.markers;
-            mark = () => mark.remove();
-            this.mapService.removeLocation(mark);                        
-        }
-        this.mapComponent.loadmarker();
+            // console.log(this.mapComponent.markers);
+            this.mapComponent.markers.forEach(marker => {
+                if (marker.name == location.name) {
+                    this.mapComponent.map.removeLayer(marker);
+                }
+            });
+        }        
     }
-
 }
