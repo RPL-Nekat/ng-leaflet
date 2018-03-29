@@ -1,8 +1,17 @@
 <nav id="navigation" class="navbar navbar-light bg-light" style="cursor:pointer;">
+  
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" (keyup)="searchTerm$.next($event.target.value)" placeholder="Search">
       <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>    
+    </form>
+    <div *ngIf="results" class="list-group align-bottom">
+        <p *ngFor="let result of results | slice:0:9" class="list-group-item">
+          <a href="{{result.latest}}" target="_blank">
+            {{result.display_name}}
+          </a>
+        </p>
+      </div>
+   
 <!-- Button List Item -->
 <button type="button" style="margin-left:10px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
     <img src="../../assets/icons8/icons8_Menu_16.png">
@@ -20,6 +29,7 @@
         </div>
           <app-list-view></app-list-view>
         <div class="modal-footer">
+          <button type="button" (click)="downloadFromLocalStorage()">download</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -29,7 +39,7 @@
 <button type="button" style="margin-left:10px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     <b>+Add</b>
   </button>
-  
+
   <!-- Modal -->
   <div style="cursor:pointer;" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -54,7 +64,7 @@
           <br>
           Location Name:
           <br>
-          <input type="text" class="form-control" name="name" placeholder="location name..." [(ngModel)]="locationName" value="{{locationName}}">
+          <input type="text" class="form-control" style="text-transform:capitalize;text-decoration:black;" name="name" placeholder="location name..." [(ngModel)]="locationName" value="{{locationName}}">
           <br>
           <br>
           Description:
