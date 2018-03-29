@@ -21,8 +21,8 @@ export class LocationListComponent implements OnInit {
     }
 
     getFile() {
-    	let data = JSON.stringify(localStorage.getItem('locations'));
-    	let blob = new Blob([data], { type: 'text/json' });
-    	fileSaver.saveAs(blob, 'location-list.json');
+    	let data = localStorage.getItem('locations');
+      let file = new File([data], 'location-list.json', { type: 'text/json;charset=utf-8' });
+      fileSaver.saveAs(file);
     }
 }
