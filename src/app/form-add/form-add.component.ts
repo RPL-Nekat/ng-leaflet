@@ -42,5 +42,5 @@ export class FormAddComponent implements OnInit {
   }
   refresh(): void {
     window.location.reload();
-}
+  }
 }

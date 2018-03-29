@@ -1,10 +1,16 @@
-<nav id="navigation" class="navbar navbar-light bg-light" style="cursor:pointer;">
+<nav id="navigation" style="cursor:pointer;">
   
     <form class="form-inline">
       <input class="form-control mr-sm-2" (keyup)="searchTerm$.next($event.target.value)" placeholder="Search">
       <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+      <button type="button" style="margin-left:10px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+          <img src="../../assets/icons8/icons8_Menu_16.png">
+      </button>
+      <button type="button" style="margin-left:10px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          <b>+Add</b>
+        </button>
     </form>
-    <div *ngIf="results" class="list-group align-bottom">
+    <div *ngIf="results" class="list-group">
         <p *ngFor="let result of results | slice:0:9" class="list-group-item">
           <a href="{{result.latest}}" target="_blank">
             {{result.display_name}}
@@ -13,9 +19,7 @@
       </div>
    
 <!-- Button List Item -->
-<button type="button" style="margin-left:10px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-    <img src="../../assets/icons8/icons8_Menu_16.png">
-</button>
+
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -29,16 +33,14 @@
         </div>
           <app-list-view></app-list-view>
         <div class="modal-footer">
-          <button type="button" (click)="downloadFromLocalStorage()">download</button>
+          <button type="button" (click)="downloadFromLocalStorage()" class="btn btn-primary">Download <img src="../../assets/icons8/icons8_Download_16.png"></button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
       <!-- Button Form Add -->
-<button type="button" style="margin-left:10px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    <b>+Add</b>
-  </button>
+
 
   <!-- Modal -->
   <div style="cursor:pointer;" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
