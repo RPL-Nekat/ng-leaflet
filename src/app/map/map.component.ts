@@ -9,7 +9,7 @@ import {MapService} from '../services/map.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
+  
   constructor(private mapService: MapService) { }
 
   ngOnInit() {
@@ -27,15 +27,5 @@ export class MapComponent implements OnInit {
 
     this.mapService.map = mymap;
     
-    var marker = L.marker([-6.9218093, 107.6071324]).addTo(mymap);
-
-    function onMapClick(e) {
-      marker
-        .setLatLng(e.latlng)
-        .bindPopup(e.latlng.toString())
-        .openOn(mymap);
-    }
-
-    mymap.on('click', onMapClick);
   }
 }

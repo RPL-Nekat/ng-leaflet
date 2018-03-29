@@ -8,4 +8,5 @@ import {Location} from './model/location';
 })
 export class AppComponent {
   title = 'app';
+
 }
